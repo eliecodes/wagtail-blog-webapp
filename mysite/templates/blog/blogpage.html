@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load static %}
+<br>
+<br>
+<br>
+{% block content %}
+
+<!--blog-grid-->
+
+<section class="blog-grid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 mt-30">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <!--Post-1-->
+                        {% for post in page.get_children.specific %}
+                        <div class="post-card">
+                            <div class="post-card-image">
+                                {% if post.header_image %}
+                                <a href="{% pageurl post %}">
+                                    {% image post.header_image original as header_image %}
+                                    <img src="{{header_image.url}}" alt="">
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div class="post-card-content">
+                                <a href="blog-grid.html" class="categorie">Food</a>
+                                <h5>
+                                    <a href="{% pageurl post %}">{{post.title}}</a>
+                                </h5>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Odit quam atque ipsa laborum sunt distinctio...</p>
+                                <div class="post-card-info">
+                                    <ul class="list-inline">
+
+                                        <li class="dot"></li>
+                                        <li>{{post.last_published_at}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!--/-->
+                    </div>
+                    <!--pagination-->
+                    {% include "components/pagination.html" %}
+                </div>
+            </div>
+            <div class="col-lg-4 max-width">
+
+                <!--widget-categories-->
+                {% include "components/main_categories.html" %}
+
+
+                <!--widget-tags-->
+                {% include "components/main_tags.html" %}
+                <!--/-->
+
+            </div>
+        </div>
+    </div>
+</section><!--/-->
+
+
+{% endblock %}
