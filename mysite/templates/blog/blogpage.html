@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
+{% load blogapp_tags %}
 {% load static %}
 <br>
 <br>
@@ -51,11 +52,11 @@
             <div class="col-lg-4 max-width">
 
                 <!--widget-categories-->
-                {% include "components/main_categories.html" %}
+                {% category_list %}
 
 
                 <!--widget-tags-->
-                {% include "components/main_tags.html" %}
+                {% tag_list %}
                 <!--/-->
 
             </div>

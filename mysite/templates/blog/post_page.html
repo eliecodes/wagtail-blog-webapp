@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
+{% load blogapp_tags %}
 {% load static %}
 {% block content %}
 <!--post-default-->
@@ -171,21 +172,12 @@
                     <div class="post-single-footer">
                         <div class="tags">
                             <ul class="list-inline">
+                                {% for tag in page.tags.all %}
                                 <li>
-                                    <a href="blog-grid.html">Travel</a>
+                                    <a href="blog-grid.html">{{tag}}</a>
                                 </li>
-                                <li>
-                                    <a href="blog-grid.html">Nature</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">tips</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">forest</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">beach</a>
-                                </li>
+                                {% endfor %}
+
 
                             </ul>
                         </div>
@@ -229,9 +221,9 @@
 
 
 
+                {% post_categories_list %}
+                {% post_tag_list %}
 
-                {% include "components/main_categories.html" %}
-                {% include "components/main_tags.html" %}
 
 
 

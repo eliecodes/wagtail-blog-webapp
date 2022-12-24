@@ -4,8 +4,8 @@
     </div>
     <ul class="widget-categories">
         <li>
-            {% for category in categories %}
-            <a href="#" class="categorie">{{ category.name }}</a>
+            {% for category in post_categories %}
+            <a href="#" class="categorie">{{ category.blog_category.name }}</a>
             {% endfor %}
         </li>
     </ul>
