@@ -1,0 +1,36 @@
+{% with blocks=page.body %}
+{% for block in blocks %}
+<div class="post-single-body">
+    {% if block.block_type == "paragraph" %}
+    <p>
+        {{ block.value }}
+    </p>
+    <br>
+    {% elif block.block_type == "h1" %}
+    <h5> {{ block.value }} </h5>
+
+    {% elif block.block_type == "image_carousel" %}
+    <div class="post-single-gallery">
+        {% include "components/image_carousel.html" with block=block only %}
+    </div>
+    {% elif block.block_type == "quote" %}
+    <div class="quote">
+        {% include "components/quote.html" with block=block only %}
+    </div>
+
+    {% elif block.block_type == "image_text" %}
+    <div class="row">
+        {% include "components/image_text.html" with block=block only %}
+    </div>
+    {% elif block.block_type == bullet_list %}
+    <ul class="list">
+        {% include "components/bullet_list.html" with block=block only %}
+    </ul>
+    {% else %}
+    <section class="block-{{block.block_type}}">
+        {{ block }}
+    </section>
+    {% endif %}
+</div>
+{% endfor%}
+{% endwith %}

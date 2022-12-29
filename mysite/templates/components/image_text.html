@@ -1,0 +1,17 @@
+{% load wagtailimages_tags %}
+<div class="col-md-6 ">
+
+    <div class="image">
+        {% image block.value.image1 fill-300x400 as img1 %}
+
+        <img src="{{ img1.url }}" alt="">
+        <p>{{ block.value.caption1 }}</p>
+    </div>
+</div>
+<div class="col-md-6 ">
+    <div class="image">
+        {% image block.value.image2 fill-300x400 as img2 %}
+        <img src="{{ img2.url }}" alt="">
+        <p>{{ block.value.caption2 }}</p>
+    </div>
+</div>

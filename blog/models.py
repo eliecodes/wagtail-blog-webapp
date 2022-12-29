@@ -1,12 +1,14 @@
 from django.db import models
 from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from taggit.models import Tag as TaggitTag, TaggedItemBase
 from wagtail.snippets.models import register_snippet
 from modelcluster.fields import ParentalKey
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from modelcluster.tags import ClusterTaggableManager
+from .block import Body_block
+from wagtail.core.fields import StreamField
 
 
 
@@ -20,11 +22,12 @@ class Blogpage(Page):
 class PostPage (Page):
     header_image = models.ForeignKey("wagtailimages.Image", null=True, blank=True, on_delete=models.SET_NULL , related_name="+")
     tags = ClusterTaggableManager(through= "PostPageTags", blank=True)
+    body = StreamField (Body_block(), blank=True)
     content_panels = Page.content_panels + [
         ImageChooserPanel("header_image"),
         FieldPanel("tags"),
-        
         InlinePanel("categories", label="category"),
+        StreamFieldPanel("body")
     ]
 
 
